@@ -14,14 +14,11 @@ class Application_Model_Page extends Zend_Db_Table_Abstract
         $select->setIntegrityCheck(false)
                 ->join('pageLocal', 'page.pageID = pageLocal.pageID')
                 ->where('page.menu = ?', 'ja')
-                ->where('page.status = ?', 'online');
+                ->where('page.status = ?', 'online')
+                ->where('pageLocal.local = ?', $local);
         
-        echo'<pre>';
-        print_r($select->__toString());
-        echo'</pre>';
-        die();
-        
-        $rows = $table->fetchAll($select);
+        $rows = $this->fetchAll($select);
+        return $rows;
         
     }
 
