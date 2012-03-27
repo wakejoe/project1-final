@@ -1,0 +1,32 @@
+body{
+    font:normal 12px/16px verdana, sans-serif;
+}
+
+#container{
+    width: 1160px;
+    margin: 0 auto;
+}
+
+header{
+    float: left;
+    width: 100%;
+}
+
+nav{
+    float: left;
+    width: 100%;
+}
+
+nav ul, nav ul li{
+    display: inline;
+}
+
+section artical{
+    float: left;
+    width: 80%;
+}
+
+section aside{
+    float: left;
+    width: 20%;
+}
