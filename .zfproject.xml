@@ -24,6 +24,7 @@
       </layoutsDirectory>
       <modelsDirectory>
         <modelFile modelName="Page"/>
+        <modelFile modelName="Translate"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <viewsDirectory>

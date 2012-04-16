@@ -14,10 +14,7 @@ class PageController extends Zend_Controller_Action
         $model = new Application_Model_Page();
         $pages = $model->getPage($title);
         
-        echo '<pre>';
-        print_r($pages['content']);
-        echo '</pre>';
-        die();
+        $this->view->page = $pages;
     }
 
 

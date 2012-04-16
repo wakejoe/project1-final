@@ -36,6 +36,24 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         //return $container;
     }
     
+    protected function _initTranslate(){
+        $locale = new Zend_Locale('nl_BE'); //normaal in de predespatch anders kan je de taal niet uitlezen
+        Zend_Registry::set('Zend_Locale', $locale);
+        
+        $translate = new Zend_Translate('array', array('yes' => 'ja'), $locale);
+        
+        $model = new Application_Model_Translate();
+        $translations = $model->getTranslationByLocale($locale);
+        
+        foreach ($translations as $translation){
+            $t = array($translation->tag => $translation->translation);
+            $translate->addTranslation($t, $locale);
+        }
+        
+        Zend_Registry::set('Zend_translate', $translate);
+    }
+
+
     /**
      * Creates all custom routers
      * 
