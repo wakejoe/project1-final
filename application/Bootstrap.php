@@ -9,6 +9,23 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Registry::set('db', $db);
     }
     
+    /**
+     * Creates all custom routers
+     * 
+     * @param array $options 
+     * @return Zend_Controller_Router_Route
+     */
+    public function _initRouter(array $options = null){
+        
+        // get the router
+        $router = $this->getResource('frontController')->getRouter();
+        
+        // add custom route
+        $router->addRoute('page', new Zend_Controller_Router_Route('pagina/:titleUrl', array('controller' => 'page', 'action' => 'index')));
+    
+        return $router;
+    }
+    
     public function _initMenu(){
         $this->bootstrap('layout');
         $layout = $this->getResource('layout');
@@ -24,7 +41,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 'label'         => $page['title'],
                 'controller'    => strtolower($page['title']),
                 'action'        => 'index',
-                'params'      => array('titelUrl' => $page['titleURL'])
+                'params'      => array('titleUrl' => $page['titleURL'])
             ));
             $container->addPage($menu);
         }
