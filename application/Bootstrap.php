@@ -21,8 +21,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         
         foreach ($pages as $page){
             $menu = new Zend_Navigation_Page_Mvc(array(
-                'label' => $page['title'],
-                'titleURL' => $page['titleURL']
+                'label'         => $page['title'],
+                'controller'    => strtolower($page['title']),
+                'action'        => 'index',
+                'params'      => array('titelUrl' => $page['titleURL'])
             ));
             $container->addPage($menu);
         }
