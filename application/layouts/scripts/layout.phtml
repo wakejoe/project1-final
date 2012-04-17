@@ -6,16 +6,17 @@
             <header>
                 <h1><?= $this->translate('text.header');?></h1>
             </header>
+            <p><?= $this->form; ?></p>
             <nav>
                 <ul>
                     <!--<li><a href="">Home</a></li>
                     <li><a href="">Test</a></li>-->
-                    <?php echo $this->navigation()->menu(); ?>
+                    <?= $this->navigation()->menu(); ?>
                 </ul>
             </nav>
             <section>
                 <article>
-                    <?php echo $this->layout()->content; ?> 
+                    <?= $this->layout()->content; ?> 
                     <aside>
                         <h2>Social media</h2>
                     </aside>
