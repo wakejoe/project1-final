@@ -10,8 +10,7 @@ class UserController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $form = new Application_Form_Users();
-        $this->view->form = $form;
+        $this->view->form = $this->view->loginFormulier();
         
         // controle en mail versturen
         if ($this->getRequest()->isPost())
@@ -21,11 +20,16 @@ class UserController extends Zend_Controller_Action
             if ($this->view->form->isValid($postParams)){
                 $params = $this->view->form->getValues();
                 
-                //login form
-                $username = $params['username'];
-                $password = $params['password'];
+                echo '<pre>';
+                print_r($params);
+                echo '</pre>';
+                die();
+      
+            }else{
                 
-            }
+                die('alles invullen!');
+                
+           }
         }
     }
 

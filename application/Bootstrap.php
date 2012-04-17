@@ -13,7 +13,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->bootstrap('layout');
         $layout = $this->getResource('layout');
         $view = $layout->getView();
-        
+        $view->addHelperPath(realpath(APPLICATION_PATH . '/views/helpers'), 'Application_View_Helper');
         $model = new Application_Model_Page();
         $pages = $model->getMenu('nl_BE');
         
