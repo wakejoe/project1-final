@@ -10,6 +10,11 @@ class UserController extends Zend_Controller_Action
 
     public function indexAction()
     {
+        
+    }
+    
+    public function loginAction()
+    {
         $this->view->form = $this->view->loginFormulier();
         
         // controle en mail versturen
