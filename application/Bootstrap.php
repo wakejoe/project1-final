@@ -50,7 +50,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             $translate->addTranslation($t, $locale);
         }
         
-        Zend_Registry::set('Zend_translate', $translate);
+        Zend_Registry::set('Zend_Translate', $translate);
     }
 
 
@@ -66,7 +66,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router = $this->getResource('frontController')->getRouter();
         
         // add custom route
-        $router->addRoute('page', new Zend_Controller_Router_Route('pagina/:titleUrl', array('controller' => 'page', 'action' => 'index')));
+        $router->addRoute('page',
+                new Zend_Controller_Router_Route('pagina/:titleUrl', array(
+                    'controller' => 'page',
+                    'action' => 'index'
+                )));
     
         return $router;
     }
