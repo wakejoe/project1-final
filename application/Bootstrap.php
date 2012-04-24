@@ -2,7 +2,12 @@
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
-    
+    protected function _initRegisterControllerPlugins() { 
+        $this->bootstrap('frontController') ; 
+        $front = $this->getResource('frontController') ; 
+        $front->registerPlugin(new Wakejoe_Translate_Translate()); 
+    } 
+        
     public function _initDbAdapter(){
         $this->bootstrap('db');
         $db = $this->getResource('db');
@@ -37,7 +42,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     }
     
     protected function _initTranslate(){
-        $locale = new Zend_Locale('nl_BE'); //normaal in de predespatch anders kan je de taal niet uitlezen
+        /*$locale = new Zend_Locale('nl_BE'); //normaal in de prédispatch anders kan je de taal niet uitlezen
         Zend_Registry::set('Zend_Locale', $locale);
         
         $translate = new Zend_Translate('array', array('yes' => 'ja'), $locale);
@@ -51,6 +56,20 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         }
         
         Zend_Registry::set('Zend_Translate', $translate);
+        
+        
+        $this->_request->getParam('lang');
+        echo '<pre>';
+        print_r($req);
+        echo '</pre>';
+        die();*/
+        $this->bootstrap('frontController');
+        $front = $this->getResource('frontController');
+        $front->setRequest(new Zend_Controller_Request_Http());
+
+        $request = $front->getRequest();
+        Wakejoe_Translate_Translate::preDispatch($request);
+        
     }
 
 
@@ -60,6 +79,20 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
      * @param array $options 
      * @return Zend_Controller_Router_Route
      */
+    /*public function _initRouter(array $options = null){
+        
+        // get the router
+        $router = $this->getResource('frontController')->getRouter();
+        
+        // add custom route
+        $router->addRoute('page',
+                new Zend_Controller_Router_Route('pagina/:titleUrl', array(
+                    'controller' => 'page',
+                    'action'     => 'index'
+                )));
+    
+        return $router;
+    }*/
     public function _initRouter(array $options = null){
         
         // get the router
@@ -69,8 +102,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router->addRoute('page',
                 new Zend_Controller_Router_Route('pagina/:titleUrl', array(
                     'controller' => 'page',
-                    'action' => 'index'
+                    'action'     => 'index'
                 )));
+        
+       // $router->addRoute('lang',   
+       //        new Zend_Controller_Router_Route('lang/:langUrl', array(
+       //             'lang'      => 'lang'
+       //         )));
     
         return $router;
     }
