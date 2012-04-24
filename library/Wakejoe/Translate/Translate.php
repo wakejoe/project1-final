@@ -5,7 +5,13 @@ class Wakejoe_Translate_Translate extends Zend_Controller_Plugin_Abstract
     
     public function preDispatch(Zend_Controller_Request_Abstract $request){
        
-        $locale = new Zend_Locale($request->getParam('lang'));
+        $lang = $request->getParam('lang');
+        if(empty ($lang)){
+            $lang = 'nl_BE';
+        }else{
+            $lang = $request->getParam('lang');
+        }
+        $locale = new Zend_Locale($lang);
         
         Zend_Registry::set('Zend_Locale', $locale);
         

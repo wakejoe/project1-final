@@ -6,6 +6,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->bootstrap('frontController') ; 
         $front = $this->getResource('frontController') ; 
         $front->registerPlugin(new Wakejoe_Translate_Translate()); 
+        $front->registerPlugin(new Wakejoe_Navigation_Navigation()); 
     } 
         
     public function _initDbAdapter(){
@@ -99,17 +100,26 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router = $this->getResource('frontController')->getRouter();
         
         // add custom route
-        $router->addRoute('page',
-                new Zend_Controller_Router_Route('pagina/:titleUrl', array(
-                    'controller' => 'page',
+        $router->addRoute('lang', 
+                new Zend_Controller_Router_Route(':lang', array(
+                    'controller' => 'index',
                     'action'     => 'index'
                 )));
         
-       // $router->addRoute('lang',   
-       //        new Zend_Controller_Router_Route('lang/:langUrl', array(
-       //             'lang'      => 'lang'
-       //         )));
-    
+        // add custom route
+        $router->addRoute('login', 
+                new Zend_Controller_Router_Route(':lang/login', array(
+                    'controller' => 'users',
+                    'action'     => 'login'
+                )));
+        
+        // add custom route
+        $router->addRoute('page',
+                new Zend_Controller_Router_Route(':lang/pagina/:titleUrl', array(
+                    'controller' => 'page',
+                    'action'     => 'index'
+                )));
+            
         return $router;
     }
 
