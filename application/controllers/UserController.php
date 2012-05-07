@@ -51,7 +51,9 @@ class UserController extends Zend_Controller_Action
                 }
       
             }else{
-                die('alles invullen!');
+                $loginErrors = new Zend_Session_Namespace('loginErrors');
+                $loginErrors->errors = $this->view->form->getErrors();
+                //die('alles invullen!');
                 
            }
         }
