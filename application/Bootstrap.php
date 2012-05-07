@@ -37,8 +37,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // add custom route
         $router->addRoute('login', 
                 new Zend_Controller_Router_Route(':lang/login', array(
-                    'controller' => 'users',
-                    'action'     => 'login'
+                    'controller' => 'user',
+                    'action'     => 'index'
                 )));
         
         // add custom route

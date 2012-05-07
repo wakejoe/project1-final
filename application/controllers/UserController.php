@@ -10,7 +10,7 @@ class UserController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        
+        $this->loginAction();
     }
     
     public function loginAction()
@@ -46,8 +46,11 @@ class UserController extends Zend_Controller_Action
                     
                     foreach($result->getMessages() as $message) {
                         
+                        echo $message;
+                        
                     }
                     
+                    //doen wat je wilt, redirect, error, ...
                 }
       
             }else{
