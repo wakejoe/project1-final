@@ -22,6 +22,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->addHelperPath(realpath(APPLICATION_PATH . '/views/helpers'), 'Application_View_Helper');        
     }
     
+    public function _initAutoload(){
+        $autoloader = new Zend_Application_Module_Autoloader(array(
+            'namespace' => 'Admin',
+            'basePath' => APPLICATION_PATH.'/modules/admin/'
+        ));
+        return $autoloader;
+    }
+    
     public function _initRouter(array $options = null){
         
         // get the router
