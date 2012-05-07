@@ -25,6 +25,9 @@ class UserController extends Zend_Controller_Action
             if ($this->view->form->isValid($postParams)){
                 $params = $this->view->form->getValues();
                 
+                $value = $params['login'];
+                $credential = $params['password'];
+                
                 $auth = Zend_Auth::getInstance();
                 
                 $authAdapter = new Zend_Auth_Adapter_DbTable(Zend_Registry::get('db'));
@@ -33,14 +36,14 @@ class UserController extends Zend_Controller_Action
                             ->setIdentityColumn('username')
                             ->setCredentialColumn('password')
                             ->setIdentity($value)
-                            ->setCredential($credential);
+                            ->setCredential(md5($credential));
                 
                 $result = $auth->authenticate($authAdapter);
                 
                 if ($result->isValid()){
                     
                     $identity = Zend_Auth::getInstance()->getIdentity();
-                    echo 'ingelogd als' . $identity;
+                    echo 'ingelogd als ' . $identity;
                     
                 } else {
                     
