@@ -5,19 +5,24 @@ class Admin_Form_Page extends Zend_Form_SubForm
 
     public function init()
     {
-        //menu
-        $this->addElement(new Zend_Form_Element_Text('menu', array(
-            'label' => 'label.menu',
-            'filters' => array('stringTrim'),
-            'required =>' => true
-        )));
         
-        //status
-        $this->addElement(new Zend_Form_Element_Text('status', array(
-            'label' => 'label.status',
-            'filters' => array('stringTrim'),
+        $menu = new Zend_Form_Element_Radio("menu", array(
+            'label' => 'label.menu',
             'required =>' => true
-        )));
+        ));
+        $menu->addMultiOption("ja","ja")->setAttrib("checked","checked")
+               ->addMultiOption("nee","nee");
+        
+        $status = new Zend_Form_Element_Radio("status", array(
+            'label' => 'label.status',
+            'required =>' => true
+        ));
+        $status->addMultiOption("online","online")->setAttrib("checked","checked")
+               ->addMultiOption("offline","offline");
+        
+        $this->addElement($menu);
+        $this->addElement($status);
+        
     }
 
 

@@ -33,6 +33,7 @@ class Admin_PageController extends Zend_Controller_Action
                 print_r($params['page']['status']);
                 echo '</pre>';
                 die();*/
+                
                 $params['pageLocal']['pageID'] = $modelPage->insert($params['page']);
                 
                 $modelPageLocal->insert($params['pageLocal']);
