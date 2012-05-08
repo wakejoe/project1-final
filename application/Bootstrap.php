@@ -54,7 +54,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // add custom route
         $router->addRoute('logout', 
                 new Zend_Controller_Router_Route(':lang/logout', array(
-                    'controller' => 'users',
+                    'controller' => 'user',
                     'action'     => 'logout'
                 )));
         

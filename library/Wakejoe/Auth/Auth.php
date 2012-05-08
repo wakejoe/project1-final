@@ -3,7 +3,7 @@ class Wakejoe_Auth_Auth extends Zend_Controller_Plugin_Abstract
 {
     public function preDispatch(Zend_Controller_Request_Abstract $request)
     {
-        $loginController = 'users';
+        $loginController = 'user';
         $loginAction     = 'login';
         $local           = Zend_Registry::get('Zend_Locale');
         $auth = Zend_Auth::getInstance();
