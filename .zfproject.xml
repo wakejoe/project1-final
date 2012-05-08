@@ -48,12 +48,16 @@
               <actionMethod actionName="add"/>
             </controllerFile>
           </controllersDirectory>
-          <formsDirectory enabled="false"/>
+          <formsDirectory>
+            <formFile formName="PageM"/>
+            <formFile formName="Page"/>
+          </formsDirectory>
           <layoutsDirectory enabled="false">
             <layoutScriptsDirectory enabled="false"/>
           </layoutsDirectory>
           <modelsDirectory>
             <modelFile modelName="Addpage"/>
+            <modelFile modelName="Page"/>
           </modelsDirectory>
           <viewsDirectory>
             <viewScriptsDirectory>

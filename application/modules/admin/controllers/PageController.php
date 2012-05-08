@@ -16,7 +16,7 @@ class Admin_PageController extends Zend_Controller_Action
     public function addAction()
     {
         $this->_helper->getHelper('layout')->disableLayout();
-        $form = new Application_Form_Pagina();
+        $form = new Admin_Form_PageM();
         $this->view->form = $form;
         
            if ($this->getRequest()->isPost()) 
@@ -26,15 +26,16 @@ class Admin_PageController extends Zend_Controller_Action
             if ($this->view->form->isValid($postParams)){
                 $params = $this->view->form->getValues();
                 
-                $model = new Admin_Model_Addpage();
+                $modelPageLocal = new Admin_Model_Addpage();
+                $modelPage = new Admin_Model_Page();
                 
                 /*echo '<pre>';
-                print_r($model);
+                print_r($params['page']['status']);
                 echo '</pre>';
                 die();*/
-                $params['pageID'] = 1;
+                $params['pageLocal']['pageID'] = $modelPage->insert($params['page']);
                 
-                $model->insert($params);
+                $modelPageLocal->insert($params['pageLocal']);
                 
                 
                 
